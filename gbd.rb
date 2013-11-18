@@ -5,7 +5,7 @@ require 'zip'
 
 puts "link"
 link = gets.chomp
-puts "Nome"
+puts "Name"
 DATA_DIR = gets.chomp 
 Dir.mkdir(DATA_DIR) unless File.exists?(DATA_DIR)
 #Uses a .jar file to download pages from google books
@@ -16,7 +16,7 @@ Dir.mkdir(DATA_DIR) unless File.exists?(DATA_DIR)
 issue_dirzip = DATA_DIR + "/"
  
  zipfile_name = "/home/luis/googlebooksdownloader/" + DATA_DIR + ".zip"
-Zip::File.open(zipfile_name, Zip::File::CREATE) do |zipfile|
+Zip::ZipFile.open(zipfile_name, Zip::ZipFile::CREATE) do |zipfile|
     Dir[File.join(issue_dirzip, '**', '**')].each do |file|
       zipfile.add(file.sub(issue_dirzip, ''), file)
     end
